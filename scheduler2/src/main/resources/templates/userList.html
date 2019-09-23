@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduler2</title>
+    <meta charset="UTF-8">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center">  Users list  </h1>
+<table>
+    <tr>
+        <td th:text="UserID"></td>
+        <td th:text="Username"></td>
+        <td th:text="Password"></td>
+        <td th:text="FirstName"></td>
+        <td th:text="LastName"></td>
+        <td th:text="BirthDate"></td>
+        <td th:text="GrupID"></td>
+    </tr>
+    <th:block th:each="user:${userList}">
+        <tr>
+            <td th:text="${user.getUserID()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getPassword()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getBirthDate()}"></td>
+            <td th:text="${user.getGrup()}"></td>
+            <td>
+                <form action="#" th:action="@{/user/delete}" method="post">
+                    <input type="hidden" name="UserID" th:value="${user.getUserID()}">
+                    <input type="submit" name="removeButton" th:value="Remove">
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/user/update}" method="get">
+                    <input type="hidden" name="UserID" th:value="${user.getUserID()}">
+                    <input type="submit" name="editButton" th:value="Edit"></input>
+                    ​
+                    ​
+                </form>
+            </td>
+        </tr>
+    </th:block>
+    ​
+    ​
+    ​
+</table>
+<br>
+<br>
+​
+<form action="#" th:action="@{/user/save}" th:object="${newUser}" method="post">
+    <tr>
+        <td><label> ID <input type="text" th:field="*{userID}"/></label></td>
+        </br>
+        <td><label> Username <input type="text" th:field="*{username}"/></label></td>
+        </br>
+        <td><label> Password <input type="text" th:field="*{password}"/></label></td>
+        </br>
+        <td><label> FirstName<input type="text" th:field="*{firstName}"/></label></td>
+        </br>
+        <td><label> LastName<input type="text" th:field="*{lastName}"/></label></td>
+        </br>
+        <!--        <td><label> BirthDate<input type="date" th:field="*{birthDate}"/></label></td></br>-->
+        <!--        <td><label> GrupId<input type="text" th:field="*{grup}"/></label></td></br>-->
+
+        <td><input type="submit" value="Save"/></td>
+    </tr>
+</form>
+
+</body>
+</html>
