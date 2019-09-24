@@ -39,11 +39,11 @@ public class UserService {
         updatedUser.setIdUser(UserID);
         //Grup g = grupRepository.getById(GrupId);
         // setting the new username on the user
-        updatedUser.setUsername(Username);
-        updatedUser.setPassword(Password);
-        updatedUser.setFirstName(FirstName);
-        updatedUser.setLastName(LastName);
-        updatedUser.setBirthDate(BirthDate);
+//        updatedUser.setUsername(Username);
+//        updatedUser.setPassword(Password);
+//        updatedUser.setFirstName(FirstName);
+//        updatedUser.setLastName(LastName);
+//        updatedUser.setBirthDate(BirthDate);
         //updatedUser.setGrup(g);
         // persisting the new values in the database
         userRepository.save(updatedUser);

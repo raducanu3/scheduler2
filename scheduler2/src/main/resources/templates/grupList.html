@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduler2</title>
+    <meta charset="UTF-8">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center">  Groups list  </h1>
+
+<table>
+    <tr>
+        <td th:text="GrupID"></td>
+        <td th:text="GrupName"></td>
+
+    </tr>
+    <th:block th:each="user:${grupList}">
+        <tr>
+            <td th:text="${user.getGrupID()}"></td>
+            <td th:text="${user.getGrupName()}"></td>
+            <td>
+                <form action="#" th:action="@{/grup/delete}" method="post">
+                    <input type="hidden" name="GrupID" th:value="${user.getGrupID()}">
+                    <input type="submit" name="removeButton" th:value="Remove">
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/grup/update}" method="get">
+                    <input type="hidden" name="GrupID" th:value="${user.getGrupID()}">
+                    <input type="submit" name="editButton" th:value="Edit"></input>
+                    ​
+                    ​
+                </form>
+            </td>
+        </tr>
+    </th:block>​
+    ​
+</table>
+<br>
+<br>
+​
+<form action="#" th:action="@{/grup/save}" th:object="${newGrup}" method="post">
+    <tr>
+        <td><label> ID <input type="text" th:field="*{GrupID}"/></label></td>
+        </br>
+        <td><label> Username <input type="text" th:field="*{grupName}"/></label></td>
+        </br>
+        <td><input type="submit" value="Save"/></td>
+    </tr>
+</form>
+</body>
+</html>

@@ -1,12 +1,13 @@
 package com.sda.scheduler2.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name="USER")
 @Data
 public class User {
     @Id
@@ -16,33 +17,26 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    private Date birthDate;
     @ManyToOne
-    @JoinColumn(name="grupId", nullable=false)
+    @JoinColumn(name="grupID")
     private Grup grup;
-
-    public Integer getIdUser() {
-        return userID;
+    public Grup getGrup() {
+        return grup;
     }
 
-    public void setIdUser(Integer userID) {
-        this.userID = userID;
+    public void setGrup(Grup grup) {
+        this.grup = grup;
     }
 
-    public String getUsername() {
-        return username;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    private Date birthDate;
+
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getFirstName() {
@@ -61,19 +55,29 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Grup getGrup() {
-        return grup;
+    public Integer getIdUser() {
+        return userID;
     }
 
-    public void setGrup(Grup grup) {
-        this.grup = grup;
+    public void setIdUser(Integer userID) {
+        this.userID = userID;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
 }

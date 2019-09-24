@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="Grup")
 public class Grup {
     @OneToMany(mappedBy="grup")
     private Set<User> user;
